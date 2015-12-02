@@ -1,0 +1,13 @@
+import org.scalatest.junit.Junit3Suite
+import Element.elem
+
+class ELementSuite extends Junit3Suite {
+    def testUniformElement() {
+        val ele = elem('x', 2, 3)
+        assert(ele.width === 2)
+        expect(3) { ele.height }
+        intercept(classOf[IllegalArgumentException]) {
+            elem('x', -2, 3)
+        }
+    }
+}
