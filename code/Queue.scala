@@ -1,7 +1,7 @@
-trait Queue[T] {
+trait Queue[+T] {
     def head: T
     def tail: Queue[T]
-    def append(x: T): Queue[T]
+    def append[U >: T](x: U): Queue[U]
 }
 
 
@@ -24,8 +24,8 @@ object Queue {
             new QueueImpl(q.leading.tail, q.trailing)
         }
 
-        def append(x: T) = 
-            new QueueImpl(leading, x :: trailing)
+        def append[U >: T](x: U) = 
+            new QueueImpl[U](leading, x :: trailing)
     }
 
 }
